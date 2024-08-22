@@ -1,0 +1,10 @@
+//==========================
+// Calculating elements in ReLU activation function
+// after copying the instr.csv, run with:
+// > python .\sim_generator.py .\instrs.csv 5000 (e.g. number of elements) VECTOR_LANES
+// where VECTOR_LANES the number of the RTLs vector lanes
+//==========================
+//load the array
+vld, v0, #0
+//apply the ReLU
+vrelu, v1, v0

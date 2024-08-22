@@ -1,0 +1,19 @@
+//==========================
+// Calculating elements in dense layer
+// after copying the instr.csv, run with:
+// > python .\sim_generator.py .\instrs.csv 5000 (e.g. number of input features) VECTOR_LANES
+// where VECTOR_LANES the number of the RTLs vector lanes
+//==========================
+//v0 holds the total sum
+//Note. The bias term in this case is considered to be zero.
+vandi, v0, v0, #0
+//load the first array
+vld, v1, #0
+//load the second array
+vld, v2, #2048
+//calculate their product
+vmul, v3, v1, v2
+//reduce the result
+vradd, v4, v3
+//add it to sum
+vadd, v0, v4

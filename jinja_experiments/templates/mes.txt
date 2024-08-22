@@ -1,0 +1,8 @@
+{# templates/message.txt #}
+
+See you tomorrow!
+Anke
+
+{% for i in range(11) %}
+  {{ i }}
+{% endfor %}

@@ -1,0 +1,22 @@
+//==========================
+// Calculating elements in AvgPool layer with kernel size (2,2)
+// after copying the instr.csv, run with:
+// > python .\sim_generator.py .\instrs.csv 5000 (e.g. number of output elements) VECTOR_LANES
+// where VECTOR_LANES the number of the RTLs vector lanes
+//==========================
+//load the first array
+vld, v0, #0
+//load the second array
+vld, v1, #320
+//calculate the sum of the first 2 vregs
+vadd, v1, v1, v0
+//load the third array
+vld, v0, #1024
+//add the next vreg
+vadd, v1, v1, v0
+//load the fourth array
+vld, v0, #600
+//add the next vreg
+vadd, v1, v1, v0
+//divide the sum with the number of kernel size
+vdiv, v1, v1, #1

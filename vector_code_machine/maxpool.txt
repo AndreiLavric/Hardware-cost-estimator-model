@@ -1,0 +1,20 @@
+//==========================
+// Calculating elements in MaxPool layer with kernel size (2,2)
+// after copying the instr.csv, run with:
+// > python .\sim_generator.py .\instrs.csv 5000 (e.g. number of output elements) VECTOR_LANES
+// where VECTOR_LANES the number of the RTLs vector lanes
+//==========================
+//load the first array
+vld, v0, #0
+//load the second array
+vld, v1, #320
+//apply the MaxPool between first 2 vregs
+vmax, v1, v1, v0
+//load the third array
+vld, v0, #1024
+//apply the MaxPool between the max and next vreg
+vmax, v1, v1, v0
+//load the fourth array
+vld, v0, #600
+//apply the MaxPool between the max and next vreg
+vmax, v1, v1, v0

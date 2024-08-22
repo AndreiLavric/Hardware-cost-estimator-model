@@ -1,0 +1,16 @@
+{# templates/message.txt #}
+
+// Calculating the output of the convolutional layer
+{% for k in range(width_size-kernel_size+1) %}
+    {% for l in range(height_size-kernel_size+1) %}
+        {% for i in range(kernel_size) -%}
+            {% for j in range(kernel_size) -%}
+            {% if i == 0 and j == 0 -%}
+                output_matrix[{{ k }}][{{ l }}]  = input_matrix[{{ i + k }}][{{ j + l }}] * kernel_matrix[{{ i }}][{{ j }}];
+            {% else -%}
+                output_matrix[{{ k }}][{{ l }}] += input_matrix[{{ i + k }}][{{ j + l }}] * kernel_matrix[{{ i }}][{{ j }}];
+            {% endif -%}
+            {% endfor -%}
+        {% endfor -%}
+    {% endfor -%}
+{% endfor %}
